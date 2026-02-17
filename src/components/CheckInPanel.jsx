@@ -2,11 +2,10 @@ import { useState } from "react";
 import { STRATEGIES } from "../patterns/strategy";
 import { SystemLogger } from "../patterns/singleton";
 
-export default function CheckInPanel({ notifications }) {
+export default function CheckInPanel({ notifications, logs, onCheckIn }) {
   const [selectedStrategy, setSelectedStrategy] = useState(null);
   const [passengerName,    setPassengerName]     = useState("");
   const [lastAction,       setLastAction]        = useState(null);
-  const [logs,             setLogs]              = useState([]);
 
   const handleCheckIn = () => {
     if (!selectedStrategy || !passengerName.trim()) return;
@@ -16,7 +15,7 @@ export default function CheckInPanel({ notifications }) {
 
     SystemLogger.getInstance().log(`CHECK-IN (${label}): ${passengerName.trim()}`);
     setLastAction(result);
-    setLogs(SystemLogger.getInstance().getLogs());
+    onCheckIn(); // avisa a App.jsx que refresque los logs
     setPassengerName("");
   };
 
@@ -115,6 +114,7 @@ export default function CheckInPanel({ notifications }) {
       )}
 
       {/* Log Singleton */}
+      {console.log("CheckIN panel: ", logs.length)}
       {logs.length > 0 && (
         <div style={{ marginTop: "auto" }}>
           <div style={{ fontSize: "11px", color: "#8b949e", letterSpacing: "1px", marginBottom: "8px" }}>

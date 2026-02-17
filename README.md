@@ -18,21 +18,6 @@
 
 ---
 
-## 🖼️ Capturas de pantalla / Screenshots
-
-> 💡 *Reemplazar con capturas reales del proyecto una vez ejecutado.*  
-> *Replace with actual screenshots once the project is running.*
-
-| Vista completa / Full view |
-|:---:|
-| ![screenshot](https://via.placeholder.com/900x500?text=Agregar+captura+de+pantalla) |
-
-| Check-In (Strategy) | Tablero Pasajero (Observer) | Panel Admin |
-|:---:|:---:|:---:|
-| ![col1](https://via.placeholder.com/280x400?text=Columna+1) | ![col2](https://via.placeholder.com/280x400?text=Columna+2) | ![col3](https://via.placeholder.com/280x400?text=Columna+3) |
-
----
-
 ## 🎯 Patrones de diseño implementados / Design Patterns Implemented
 
 ### 1. Strategy — Métodos de Check-In

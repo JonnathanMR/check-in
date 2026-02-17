@@ -10,6 +10,9 @@ export default function App() {
   const [notifications, setNotifications] = useState([]);
   const [logs,          setLogs]          = useState([]);
 
+  // Función centralizada para refrescar logs desde cualquier acción
+  const refreshLogs = () => setLogs(SystemLogger.getInstance().getLogs());
+
   // Suscribir el componente principal al sistema de vuelos (Observer)
   useEffect(() => {
     const observer = (updatedFlight) => {
@@ -32,7 +35,7 @@ export default function App() {
   const handleToggleDelay = (flightId) => {
     const updated = flightSystem.toggleDelay(flightId);
     setFlights(updated);
-    setLogs(SystemLogger.getInstance().getLogs());
+    refreshLogs();
   };
 
   return (
@@ -44,7 +47,7 @@ export default function App() {
       color: "#e6edf3",
     }}>
       {/* Columna 1: Check-In (Strategy + muestra Observer y Singleton) */}
-      <CheckInPanel notifications={notifications} />
+      <CheckInPanel notifications={notifications} logs={logs} onCheckIn={refreshLogs} />
 
       {/* Columna 2: Tablero del pasajero (Observer - suscriptor) */}
       <FlightBoard flights={flights} />

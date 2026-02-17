@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { SystemLogger } from "../patterns/singleton";
+
 const statusColor = (status) => status === "delayed" ? "#ff4d4d" : "#00c27c";
 const statusLabel = (status) => status === "delayed" ? "DEMORADO" : "EN HORARIO";
 
 export default function AdminPanel({ flights, onToggleDelay, logs }) {
+  const [_logs]              = useState([]);
+  
   const delayedCount  = flights.filter(f => f.status === "delayed").length;
   const onTimeCount   = flights.filter(f => f.status === "on_time").length;
 
